@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
+import Hero from '@/components/home-page/hero';
 
 const HomePage: NextPage = () => {
   return (
     <>
-      <h1>Home Page</h1>
+      <Hero/>
     </>
   )
 }
