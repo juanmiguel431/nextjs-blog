@@ -23,7 +23,12 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
     <li className={classes.post}>
       <Link href={link}>
         <div className={classes.image}>
-          <Image src={imagePath} alt={title} width={300} height={200}/>
+          <Image
+            src={imagePath}
+            alt={title}
+            width={300}
+            height={200}
+          />
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
