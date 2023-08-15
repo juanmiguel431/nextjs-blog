@@ -18,7 +18,7 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
   });
 
   const imagePath = `/images/posts/${slug}/${image}`;
-  const link = `/post/${slug}`;
+  const link = `/posts/${slug}`;
   return (
     <li className={classes.post}>
       <Link href={link}>

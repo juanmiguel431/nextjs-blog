@@ -6,15 +6,16 @@ import { Post } from '@/models';
 const currentWorkingDir = process.cwd();
 const postDirectory = path.join(currentWorkingDir, 'src', 'posts');
 
-export async function getPostData(fileName: string): Promise<Post> {
-  const filePath = path.join(postDirectory, fileName);
+export async function getPostData(postFileName: string): Promise<Post> {
+  const postIdentifier = postFileName.replace(/\.md$/, '');
+  const filePath = path.join(postDirectory, `${postIdentifier}.md`);
   const fileContent = await fs.readFile(filePath, 'utf-8');
   const result = matter(fileContent);
   const data = result.data as Post;
 
   return {
     ...data,
-    slug: fileName.replace(/\.md$/, ''),
+    slug: postIdentifier,
     content: result.content
   };
 }
