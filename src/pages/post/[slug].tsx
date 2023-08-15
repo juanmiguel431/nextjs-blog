@@ -1,10 +1,9 @@
 import { NextPage } from 'next';
+import PostContent from '@/components/posts/details/post-content';
 
 const PostDetailPage: NextPage = () => {
   return (
-    <>
-      <h1>Post Detail Page</h1>
-    </>
+    <PostContent/>
   )
 }
 
