@@ -5,4 +5,5 @@ export interface Post {
   date: string;
   slug: string;
   content: string;
+  featured: boolean;
 }

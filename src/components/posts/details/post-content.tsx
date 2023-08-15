@@ -14,7 +14,7 @@ const dummy_post: Post = {
   title: 'Getting Started With NextJS',
   image: 'getting-started-nextjs1.png',
   date: '2022-02-10',
-  excerpt: 'NextJS is a React Framework for production - it makes building fullstack React apps and sites a breeze and ships with build-in SSR,',
+  excerpt: 'NextJS is a React Framework for production - it makes building fullstack React apps and sites a breeze and ships with build-in SSR.',
   content: '# This is a first post'
 };
 
