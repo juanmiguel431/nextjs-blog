@@ -3,6 +3,7 @@ import PostContent from '@/components/posts/details/post-content';
 import { getAllPosts, getPostData } from '@/lib/posts-util';
 import { Post } from '@/models';
 import { ParsedUrlQuery } from 'querystring';
+import { GetStaticPathsResult } from 'next/types';
 
 interface PostDetailPageProps {
   post: Post;
@@ -46,9 +47,9 @@ export const getStaticProps: GetStaticProps<PostDetailPageProps, Params> = async
   }
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const posts = await getAllPosts();
-  const paths = posts.map(p => `/posts/${p.slug}`);
+  const paths: GetStaticPathsResult<Params>['paths'] = posts.map(p => ({ params: { slug: p.slug } }));
   return {
     paths: paths,
     fallback: 'blocking'
