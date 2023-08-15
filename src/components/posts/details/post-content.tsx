@@ -2,6 +2,7 @@ import React from 'react';
 import PostHeader from '@/components/posts/details/post-header';
 import { Post } from '@/models';
 import classes from '@/styles/post-content.module.css';
+import ReactMarkdown from 'react-markdown';
 
 interface PostContentProps {
   title: string;
@@ -23,7 +24,7 @@ const PostContent: React.FC = () => {
   return (
     <article className={classes.content}>
       <PostHeader title={dummy_post.title} image={imagePath}/>
-      <h1>Post Content</h1>
+      <ReactMarkdown>{dummy_post.content}</ReactMarkdown>
     </article>
   )
 }
