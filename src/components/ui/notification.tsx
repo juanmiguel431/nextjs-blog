@@ -1,5 +1,6 @@
 import classes from '@/styles/notification.module.css';
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { Notification } from '@/models';
 
 interface NotificationProps {
@@ -21,12 +22,18 @@ const Notification: React.FC<NotificationProps> = (props) => {
 
   const cssClasses = `${classes.notification} ${statusClasses}`;
 
-  return (
+  const element = document.getElementById('notifications');
+
+  if (!element) {
+    return;
+  }
+
+  return ReactDOM.createPortal((
     <div className={cssClasses}>
       <h2>{title}</h2>
       <p>{message}</p>
     </div>
-  );
+  ), element);
 }
 
 export default Notification;
