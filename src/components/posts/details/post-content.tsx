@@ -24,7 +24,7 @@ const PostContent: React.FC<PostContentProps> = ({ post }) => {
           <div className={classes.image}>
             <Image
               src={`/images/posts/${post.slug}/${element.properties.src}`}
-              alt={element.alt}
+              alt={element.properties.alt}
               width={600}
               height={300}
             />
