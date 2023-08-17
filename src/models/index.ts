@@ -7,3 +7,11 @@ export interface Post {
   content: string;
   featured: boolean;
 }
+
+export type Status = 'pending' | 'success' | 'error';
+
+export interface Notification {
+  status: Status;
+  title: string;
+  message: string;
+}

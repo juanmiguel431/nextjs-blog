@@ -1,25 +1,71 @@
 import React, { useRef, useState } from 'react';
 import classes from '@/styles/contact-form.module.css';
 import axios from 'axios';
+import NotificationComp from '@/components/ui/notification';
+import { Notification, Status } from '@/models';
 
 const ContactForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const emailRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const [requestStatus, setRequestStatus] = useState<Status | null>(null);
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    setLoading(true);
     e.preventDefault();
 
-    const data = {
-      email: emailRef.current?.value,
-      name: nameRef.current?.value,
-      message: messageRef.current?.value
-    };
+    setLoading(true);
+    setRequestStatus('pending')
 
-    await axios.post('/api/contact', data);
-    setLoading(false);
+    try {
+      const body = {
+        email: emailRef.current?.value,
+        name: nameRef.current?.value,
+        message: messageRef.current?.value
+      };
+
+      const response = await axios.post('/api/contact', body);
+      const data = response.data;
+
+      setRequestStatus('success')
+    } catch (e) {
+      if (e instanceof Error) {
+        setRequestStatus('error');
+        setErrorMessage(e.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  let notification: Notification | null;
+
+  switch (requestStatus) {
+    case 'pending':
+      notification = {
+        status: 'pending',
+        title: 'Sending message...',
+        message: 'Your message is on its way!',
+      };
+      break;
+    case 'success':
+      notification = {
+        status: 'success',
+        title: 'Success!',
+        message: 'Message sent successfully!',
+      };
+      break;
+    case 'error':
+      notification = {
+        status: 'error',
+        title: 'Error!',
+        message: errorMessage,
+      };
+      break;
+    default:
+      notification = null;
+      break;
   }
 
   return (
@@ -45,6 +91,7 @@ const ContactForm: React.FC = () => {
           <button>Send Message</button>
         </div>
       </form>
+      {notification && <NotificationComp item={notification}/>}
     </section>
   )
 }
