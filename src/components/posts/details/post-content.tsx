@@ -49,6 +49,7 @@ const PostContent: React.FC<PostContentProps> = ({ post }) => {
     <article className={classes.content}>
       <PostHeader title={post.title} image={imagePath}/>
       <ReactMarkdown
+        linkTarget="_blank"
         components={customRenderers}>
         {post.content}
       </ReactMarkdown>
