@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classes from '@/styles/contact-form.module.css';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import NotificationComp from '@/components/ui/notification';
 import { Notification, Status } from '@/models';
 
@@ -37,14 +37,14 @@ const ContactForm: React.FC = () => {
         message: messageRef.current?.value
       };
 
-      const response = await axios.post('/api/contact', body);
-      const data = response.data;
+      await axios.post('/api/contact', body);
 
       setRequestStatus('success')
     } catch (e) {
-      if (e instanceof Error) {
+      if (e instanceof AxiosError) {
         setRequestStatus('error');
-        setErrorMessage(e.message);
+        const errorMessage = e.response?.data?.message as string;
+        setErrorMessage(errorMessage);
       }
     } finally {
       setLoading(false);
