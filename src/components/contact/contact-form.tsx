@@ -14,9 +14,13 @@ const ContactForm: React.FC = () => {
 
   useEffect(() => {
     if (requestStatus === 'success') {
-      setTimeout(() => {
+      const timerId = setTimeout(() => {
         setRequestStatus(null);
       }, 3000);
+
+      return () => {
+        clearTimeout(timerId);
+      }
     }
   }, [requestStatus]);
 
