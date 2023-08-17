@@ -15,14 +15,15 @@ const ContactForm: React.FC = () => {
             <label htmlFor="name">Your Name</label>
             <input type="text" id="name" required/>
           </div>
-          <div className={classes.control}>
-            <label htmlFor="message">Your Message</label>
-            <textarea id="message" rows={5} required/>
-          </div>
-          <div className={classes.actions}>
-            <button>Send Message</button>
-          </div>
         </div>
+        <div className={classes.control}>
+          <label htmlFor="message">Your Message</label>
+          <textarea id="message" rows={5} required/>
+        </div>
+        <div className={classes.actions}>
+          <button>Send Message</button>
+        </div>
+
       </form>
     </section>
   )
