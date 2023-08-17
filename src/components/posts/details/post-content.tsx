@@ -13,8 +13,7 @@ interface PostContentProps {
 const PostContent: React.FC<PostContentProps> = ({ post }) => {
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
-  // const customRenderers: Components = {
-  const customRenderers = {
+  const customRenderers: Components = {
     p: (paragraph: any) => {
       const { node } = paragraph;
       const element = node.children[0];
