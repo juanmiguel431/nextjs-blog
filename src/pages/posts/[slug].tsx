@@ -4,6 +4,7 @@ import { getAllPosts, getPostData } from '@/lib/posts-util';
 import { Post } from '@/models';
 import { ParsedUrlQuery } from 'querystring';
 import { GetStaticPathsResult } from 'next/types';
+import Head from 'next/head';
 
 interface PostDetailPageProps {
   post: Post;
@@ -11,7 +12,13 @@ interface PostDetailPageProps {
 
 const PostDetailPage: NextPage<PostDetailPageProps> = ({ post }) => {
   return (
-    <PostContent post={post}/>
+    <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.excerpt}/>
+      </Head>
+      <PostContent post={post}/>
+    </>
   )
 }
 

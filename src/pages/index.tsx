@@ -3,6 +3,7 @@ import Hero from '@/components/home-page/hero';
 import FeaturedPosts from '@/components/home-page/featured-posts';
 import { Post } from '@/models';
 import { getFeaturedPosts } from '@/lib/posts-util';
+import Head from 'next/head';
 
 interface HomePageProps {
   posts: Post[];
@@ -11,8 +12,11 @@ interface HomePageProps {
 const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   return (
     <>
+      <Head>
+        <title>Welcome to my blog</title>
+      </Head>
       <Hero/>
-      <FeaturedPosts posts={posts} />
+      <FeaturedPosts posts={posts}/>
     </>
   )
 }

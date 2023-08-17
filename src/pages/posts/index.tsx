@@ -2,6 +2,7 @@ import { GetStaticProps, NextPage } from 'next';
 import AllPosts from '@/components/posts/all-posts';
 import { Post } from '@/models';
 import { getAllPosts } from '@/lib/posts-util';
+import Head from 'next/head';
 
 interface AllPostsPageProps {
   posts: Post[];
@@ -9,7 +10,13 @@ interface AllPostsPageProps {
 
 const AllPostsPage: NextPage<AllPostsPageProps> = ({ posts }) => {
   return (
-    <AllPosts posts={posts}/>
+    <>
+      <Head>
+        <title>All Posts</title>
+        <meta name="description" content="A list of all programming-related tutorials and posts!"/>
+      </Head>
+      <AllPosts posts={posts}/>
+    </>
   )
 }
 
