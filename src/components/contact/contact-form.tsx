@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from '@/styles/contact-form.module.css';
 import axios from 'axios';
 import NotificationComp from '@/components/ui/notification';
@@ -11,6 +11,14 @@ const ContactForm: React.FC = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const [requestStatus, setRequestStatus] = useState<Status | null>(null);
+
+  useEffect(() => {
+    if (requestStatus === 'success') {
+      setTimeout(() => {
+        setRequestStatus(null);
+      }, 3000);
+    }
+  }, [requestStatus]);
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
