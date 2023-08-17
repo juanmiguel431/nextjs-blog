@@ -1,10 +1,9 @@
 import { NextPage } from 'next';
+import ContactForm from '@/components/contact/contact-form';
 
 const ContactPage: NextPage = () => {
   return (
-    <>
-      <h1>Contact Page</h1>
-    </>
+    <ContactForm />
   )
 }
 
